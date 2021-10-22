@@ -7,7 +7,7 @@ import com.NCcourses.other.TestClasses;
 public class Main {
     public static void main(String[] args) {
 
-        TestClasses.Test();
+        //TestClasses.Test();
 
 
         Container container = new Container(-100, 100, 200, 200);
