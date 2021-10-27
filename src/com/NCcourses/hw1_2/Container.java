@@ -16,19 +16,34 @@ public class Container {
     public int getX() {
         return x1;
     }
+
     public int getY() {
         return y1;
     }
+
     public int getWidth(){
         return x2 - x1;
     }
+
     public int getHeight(){
         return y1 - y2;
     }
+
     public boolean collides(Ball ball){
-        if (ball.getY() + ball.getRadius() > y1 ||
-                ball.getY() - ball.getRadius() < y2 ||
-                ball.getX() - ball.getRadius() < x1 ||
+        if (!collidesWidth(ball) || !collidesHeight(ball))
+            return false;
+        return true;
+    }
+
+    public boolean collidesHeight(Ball ball){
+        if (ball.getY() + ball.getRadius() > y1
+                || ball.getY() - ball.getRadius() < y2)
+            return false;
+        return true;
+    }
+
+    public boolean collidesWidth(Ball ball){
+        if (ball.getX() - ball.getRadius() < x1 ||
                 ball.getX() + ball.getRadius() > x2)
             return false;
         return true;

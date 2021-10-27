@@ -31,6 +31,7 @@ public class MyPolynomial {
             return 0;
         return coeffs.length - 1;
     }
+
     @Override
     public String toString(){
         String pol = "";
@@ -69,7 +70,6 @@ public class MyPolynomial {
                 pol = pol + sign + coeffs[i] + "x^" + i;
             }
         }
-
         //add c1*x
         if (coeffs[1] != 0){
             String sign = "+";
@@ -90,6 +90,7 @@ public class MyPolynomial {
             return 0 + "";
         return pol;
     }
+
     public double evaluate(double x){
         if (coeffs.length == 0)
             return 0;
@@ -98,6 +99,7 @@ public class MyPolynomial {
             res += coeffs[i]*Math.pow(x, i);
         return res;
     }
+
     public MyPolynomial add(MyPolynomial right){
         double[] coeffsres = new double[Math.max(this.coeffs.length, right.coeffs.length)];
         if (this.coeffs.length >= right.coeffs.length){
@@ -114,6 +116,7 @@ public class MyPolynomial {
         }
         return new MyPolynomial(coeffsres);
     }
+
     public MyPolynomial multiply(MyPolynomial right){
         double[] coeffsres = new double[this.getDegree() + right.getDegree() + 1];
         for(int i = 0; i < this.coeffs.length; i++){

@@ -24,18 +24,24 @@ public class Main {
         int rebound = 0;
         while (rebound < 8){
             ball.move();
-            if (ball.getY() + ball.getRadius() > container.getY() ||
-                    ball.getY() - ball.getRadius() < container.getY() - container.getHeight()) {
-                ball.reflectVertical();
-                rebound++;
-                ball.move();
-            }
-            if (ball.getX() - ball.getRadius() < container.getX() ||
-                    ball.getX() + ball.getRadius() > container.getX() + container.getWidth()) {
+            if (!container.collidesWidth(ball) && !container.collidesHeight(ball)){
                 ball.reflectHorizontal();
-                rebound++;
+                ball.reflectVertical();
                 ball.move();
+                rebound++;
             }
+            else
+                if (!container.collidesHeight(ball)) {
+                    ball.reflectVertical();
+                    ball.move();
+                    rebound++;
+            }
+                else
+                    if(!container.collidesWidth(ball)){
+                        ball.reflectHorizontal();
+                        ball.move();
+                        rebound++;
+                    }
             System.out.println(ball);
         }
 
