@@ -1,5 +1,7 @@
 package com.NCcourses.hw1_1.figures;
 
+import java.util.Objects;
+
 public class MyPoint {
     private int x = 0;
     private int y = 0;
@@ -33,4 +35,17 @@ public class MyPoint {
     }
     public double distance(MyPoint another){ return this.distance(another.getX(), another.getY()); }
     public double distance(){ return this.distance(0, 0); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyPoint)) return false;
+        MyPoint myPoint = (MyPoint) o;
+        return getX() == myPoint.getX() && getY() == myPoint.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
+    }
 }

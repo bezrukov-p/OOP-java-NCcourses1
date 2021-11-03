@@ -1,5 +1,7 @@
 package com.NCcourses.hw1_1;
 
+import java.util.Objects;
+
 public class Employee {
     private int id;
     private String firstName;
@@ -48,5 +50,20 @@ public class Employee {
 
     public String toString(){
         return "Employee[id=" + id + ",name=" + firstName + " " + lastName + ",salary=" + salary + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && getSalary() == employee.getSalary()
+                && Objects.equals(getFirstName(), employee.getFirstName())
+                && Objects.equals(getLastName(), employee.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, getFirstName(), getLastName(), getSalary());
     }
 }

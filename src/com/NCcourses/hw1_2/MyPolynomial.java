@@ -1,5 +1,7 @@
 package com.NCcourses.hw1_2;
 
+import java.util.Arrays;
+
 import static com.NCcourses.other.IsEqualDouble.*;
 
 public class MyPolynomial {
@@ -125,5 +127,18 @@ public class MyPolynomial {
             }
         }
         return new MyPolynomial(coeffsres);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyPolynomial)) return false;
+        MyPolynomial that = (MyPolynomial) o;
+        return Arrays.equals(coeffs, that.coeffs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(coeffs);
     }
 }

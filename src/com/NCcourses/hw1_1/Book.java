@@ -1,5 +1,8 @@
 package com.NCcourses.hw1_1;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Book {
     private String name;
     private Author[] authors;
@@ -72,5 +75,23 @@ public class Book {
             authornames = authornames + authors[i].getName() + ",";
         authornames = authornames + authors[authors.length - 1].getName();
         return authornames;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return Double.compare(book.getPrice(), getPrice()) == 0
+                && getQty() == book.getQty()
+                && Objects.equals(getName(), book.getName())
+                && Arrays.equals(getAuthors(), book.getAuthors());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(getName(), getPrice(), getQty());
+        result = 31 * result + Arrays.hashCode(getAuthors());
+        return result;
     }
 }

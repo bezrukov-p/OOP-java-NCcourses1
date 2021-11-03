@@ -1,5 +1,7 @@
 package com.NCcourses.hw1_2;
 
+import java.util.Objects;
+
 public class Container {
     private int x1;
     private int y1;
@@ -30,27 +32,34 @@ public class Container {
     }
 
     public boolean collides(Ball ball){
-        if (!collidesWidth(ball) || !collidesHeight(ball))
-            return false;
-        return true;
+        return collidesWidth(ball) && collidesHeight(ball);
     }
 
     public boolean collidesHeight(Ball ball){
-        if (ball.getY() + ball.getRadius() > y1
-                || ball.getY() - ball.getRadius() < y2)
-            return false;
-        return true;
+        return !(ball.getY() + ball.getRadius() > y1)
+                && !(ball.getY() - ball.getRadius() < y2);
     }
 
     public boolean collidesWidth(Ball ball){
-        if (ball.getX() - ball.getRadius() < x1 ||
-                ball.getX() + ball.getRadius() > x2)
-            return false;
-        return true;
+        return !(ball.getX() - ball.getRadius() < x1) &&
+                !(ball.getX() + ball.getRadius() > x2);
     }
 
     @Override
     public String toString() {
         return "Container[(" + x1 + "," + y1 + "),(" + x2 + "," + y2 + ")]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Container)) return false;
+        Container container = (Container) o;
+        return x1 == container.x1 && y1 == container.y1 && x2 == container.x2 && y2 == container.y2;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x1, y1, x2, y2);
     }
 }

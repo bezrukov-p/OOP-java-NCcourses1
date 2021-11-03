@@ -1,5 +1,7 @@
 package com.NCcourses.hw1_2;
 
+import java.util.Objects;
+
 import static com.NCcourses.other.IsEqualDouble.*;
 
 public class MyComplex {
@@ -116,5 +118,19 @@ public class MyComplex {
     public MyComplex conjugate(){
         this.imag *= -1;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyComplex)) return false;
+        MyComplex myComplex = (MyComplex) o;
+        return Double.compare(myComplex.getReal(), getReal()) == 0
+                && Double.compare(myComplex.getImag(), getImag()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getReal(), getImag());
     }
 }
